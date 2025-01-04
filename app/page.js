@@ -3,6 +3,9 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <Button variant = "destructive">Test</Button>
+    <div className="mt-40"> 
+      <Button variant = "destructive">Test</Button>
+    </div>
+    
   );
 }
