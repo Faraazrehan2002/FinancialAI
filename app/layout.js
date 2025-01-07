@@ -1,12 +1,9 @@
 import "./globals.css";
-import { Poppins } from "next/font/google";
+import { Inter } from "next/font/google";
 import Header from "@/components/header";
 import { ClerkProvider } from "@clerk/nextjs";
 
-const font = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"], 
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "FinAI",
@@ -17,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={`${font.className}`}>
+        <body className={`${inter.className}`}>
           {/* header */}
           <Header/>
 
