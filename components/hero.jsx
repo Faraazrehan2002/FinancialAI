@@ -43,15 +43,12 @@ const HeroSection = () => {
                 <Link href="/dashboard">
                     <Button size = "lg" className='px-8'>Get Started</Button>
                 </Link>
-                <Link href="https://www.youtube.com/watch?v=egS6fnZAdzk&t=82s">
-                    <Button size = "lg" variant = 'outline' className='px-8'>Wacth Demo</Button>
-                </Link>
             </div>
         </div>
         <div className='hero-image-wrapper'>
             <div ref = {imageRef} className='hero-image'>
                 <Image
-                 src = '/banner.jpeg' 
+                 src = '/banner.png' 
                  width = {1200} 
                  height = {720} 
                  alt = "Dashboard Preview"
