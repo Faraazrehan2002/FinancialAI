@@ -22,7 +22,7 @@ const Header = async() => {
                 />
             </Link>
         
-            <div className='flex items=center space-x-4'>
+            <div className='flex items=center space-x-4'>  
                 <SignedIn>
                     <Link href = {'/dashboard'} className='text-gray-600 hover:text-blue-600 
                     flex items-center gap-2'>
