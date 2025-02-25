@@ -1,8 +1,10 @@
 import HeroSection from "@/components/hero";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { featuresData, howItWorksData, statsData, testimonialsData } from "./data/landing";
+import { featuresData, howItWorksData, statsData, testimonialsData } from "../data/landing";
 import { Card, CardContent } from "@/components/ui/card";
+
+
 
 export default function Home() {
   return (

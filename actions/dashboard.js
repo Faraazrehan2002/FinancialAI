@@ -6,50 +6,51 @@ import { request } from "@arcjet/next";
 import { auth } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
-// const serializeTransaction = (obj) => {
-//   const serialized = { ...obj };
-//   if (obj.balance) {
-//     serialized.balance = obj.balance.toNumber();
-//   }
-//   if (obj.amount) {
-//     serialized.amount = obj.amount.toNumber();
-//   }
-//   return serialized;
-// };
 
-// export async function getUserAccounts() {
-//   const { userId } = await auth();
-//   if (!userId) throw new Error("Unauthorized");
+const serializeTransaction = (obj) => {
+  const serialized = { ...obj };
+  if (obj.balance) {
+    serialized.balance = obj.balance.toNumber();
+  }
+  if (obj.amount) {
+    serialized.amount = obj.amount.toNumber();
+  }
+  return serialized;
+};
 
-//   const user = await db.user.findUnique({
-//     where: { clerkUserId: userId },
-//   });
+export async function getUserAccounts() {
+  const { userId } = await auth();
+  if (!userId) throw new Error("Unauthorized");
 
-//   if (!user) {
-//     throw new Error("User not found");
-//   }
+  const user = await db.user.findUnique({
+    where: { clerkUserId: userId },
+  }); 
 
-//   try {
-//     const accounts = await db.account.findMany({
-//       where: { userId: user.id },
-//       orderBy: { createdAt: "desc" },
-//       include: {
-//         _count: {
-//           select: {
-//             transactions: true,
-//           },
-//         },
-//       },
-//     });
+  if (!user) {
+    throw new Error("User not found");
+  }
 
-//     // Serialize accounts before sending to client
-//     const serializedAccounts = accounts.map(serializeTransaction);
+  try {
+    const accounts = await db.account.findMany({
+      where: { userId: user.id },
+      orderBy: { createdAt: "desc" },
+      include: {
+        _count: {
+          select: {
+            transactions: true,
+          },
+        },
+      },
+    });
 
-//     return serializedAccounts;
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// }
+    // Serialize accounts before sending to client
+    const serializedAccounts = accounts.map(serializeTransaction);
+
+    return serializedAccounts;
+  } catch (error) {
+    console.error(error.message);
+  }
+}
 
 export async function createAccount(data) {
   try {
